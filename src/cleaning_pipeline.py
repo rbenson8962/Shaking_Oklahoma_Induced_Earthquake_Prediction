@@ -65,16 +65,6 @@ def clean_eq_data(df,filename):
     # breakpoint()
     eq_simple.to_csv(filename)
 
-
-
-
-
-  
- 
-
-  
-
-
 if __name__ == '__main__':
 
     wells_pre16 = pd.read_csv('../data/InjectionWells.csv')
@@ -91,9 +81,9 @@ if __name__ == '__main__':
     clean_injection_well_data_post16(wells_18, 2018, '../data/clean/OK_Wells_18.csv')
 
     
-    # clean_eq_data(eq_pre16,'../data/clean/OK_EQ_tru2015.csv')
-    # clean_eq_data(eq_post16,'../data/clean/OK_EQ_2017tru2018.csv')
-    # clean_eq_data(eq_pre16,'../data/clean/OK_EQ_2016.csv')
+    clean_eq_data(eq_pre16,'../data/clean/OK_EQ_tru2015.csv')
+    clean_eq_data(eq_post16,'../data/clean/OK_EQ_2017tru2018.csv')
+    clean_eq_data(eq_pre16,'../data/clean/OK_EQ_2016.csv')
 
     
    

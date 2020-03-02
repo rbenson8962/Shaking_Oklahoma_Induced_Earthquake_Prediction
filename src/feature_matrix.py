@@ -67,7 +67,7 @@ if __name__ == "__main__":
     eq_16 = pd.read_csv('../data/clean/OK_EQ_2016.csv')
     eq_17_18 = pd.read_csv('../data/clean/OK_EQ_2017tru2018.csv')
     
-## Create simple feature matrix with sum_bbls/year and num_eq/year
+## Create simple x feature matrix with sum_bbls/year and num_eq/year
     frames_simple = [wells_pre16, wells_16, wells_17, wells_18]
     X_simple = pd.concat(frames_simple, sort=True)
     X_simple = X_simple[['year','bbls','psi']]
@@ -77,61 +77,36 @@ if __name__ == "__main__":
     m0 = X_simple.index.isin(year)
     X_simple = X_simple[~m0]
 
-
-
+    #Cumulative sum all bbls for each year
     col_save = ['psi']
     col = [c for c in X_simple.columns if c not in col_save]
     for c in col:
         X_simple[c] = X_simple[c].cumsum()
-
     X_simple.to_csv('../data/clean/simple_x_fm')
-    
 
+    #Build simple y feature matrix 
     frames_eq = [eq_pre16, eq_16, eq_17_18]
     y_simple = pd.concat(frames_eq, sort = True).copy()
     y_simple= y_simple[['year']]
     y_simple['num_eq'] = 1
     y_simple = y_simple.groupby('year').agg({'num_eq':'sum'})
-    # y_simple.set_index('year',inplace = True)
-
     y_simple.to_csv('../data/clean/simple_y_fm')
 
-    # fig, ax = plt.subplots()
-    # ax.plot(X_simple['bbls'], y_simple['num_eq'])
-    # plt.show()
-
-
-# Create one data set with wells from 1974 - 2018
-    
+    # Create one data set with wells from 1974 - 2018
     frames = [wells_pre16, wells_16, wells_17, wells_18]
     X_wells = pd.concat(frames, sort=True).copy()
     X_wells.sort_values('year')
     X_wells= X_wells.set_index('unique_identifier')
     X_wells = X_wells[['year','well_count','psi','bbls','formation']]
     X_wells['formation'].astype('str')
-
-
-
-
-    
-
-# Build data set 
-## One hot encode all injected formations, save to new csv, and build data set 
   
+## Build feature matrix will all formations included 
+    # One hot encode all injected formations, save to new csv, and build data set 
     one_hot_formations(X_wells,'../data/clean/X_wells.csv')
-
-    X_wells_data = pd.read_csv('../data/clean/X_wells.csv')
-
     build_matrix(X_wells_data,'../data/clean/feature_matrix_X_final.csv')
-    
-
-    X_fm_final = pd.read_csv('../data/clean/feature_matrix_X_final.csv')
-
     cum_sum_matrix(X_fm_final,'../data/clean/feature_matrix_X_final_1.csv')
 
-
-# Build y_feature_matrix data set 
-
+    # Build y_feature_matrix data set 
     frames_eq = [eq_pre16, eq_16, eq_17_18]
     y_fm = pd.concat(frames_eq, sort = True).copy()
     y_fm = y_fm.reset_index()
