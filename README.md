@@ -34,18 +34,18 @@ Below is a helful video explaining how injection from a salt water disposal well
 # Raw Data
 The data for this analysis was sourced from Kaggle, the USGS, and the OK Oil and Gas Commission. The Kaggle data covers 1973 – 2015, with the other sources covering 2016 – 2018. The data includes individual injection well history and each earthquake occurrence. 
 <p align="center">
-  <img width="500" height="200" src="images/data_count.png">
+  <img width="400" height="150" src="images/data_count.png">
 </p>
 
 
 # EDA 
 
 <p align="center">
-  <img width="1000" height="800" src="images/Earthquake_count_mag_depth.png">
+  <img width="900" height="550" src="images/Earthquake_count_mag_depth.png">
 </p>
 
 <p align="center">
-  <img width="1000" height="800" src="images/Well_count_bbls_psi.png">
+  <img width="900" height="550" src="images/Well_count_bbls_psi.png">
 </p>
 
 
@@ -62,17 +62,17 @@ The data for this analysis was sourced from Kaggle, the USGS, and the OK Oil and
 Two models were created for this analysis. The first model included only the total barrels injected each year and the average PSI at injection.The second model breaks out the individual formations in order to analyze the major contributing formations. Both models show that injected barrels are the most significant feature contributing to the prediction of earthquakes. 
 
 <p align="center">
-  <img width="500" height="200" src="images/table_simple_model.png">
+  <img width="400" height="200" src="images/table_simple_model.png">
 </p>
 <p align="center">
-  <img width="1000" height="500" src="images/simple_rf_feature_importances.png">
+  <img width="900" height="400" src="images/simple_rf_feature_importances.png">
 </p>
 
 <p align="center">
-  <img width="500" height="200" src="images/table_formations_model.png">
+  <img width="400" height="200" src="images/table_formations_model.png">
 </p>
 <p align="center">
-  <img width="1000" height="500" src="images/rf_feature_importances.png">
+  <img width="900" height="400" src="images/rf_feature_importances.png">
 </p>
 
 
@@ -85,7 +85,7 @@ Formatting geologic data into a workable dataframe for machine learning while ma
 
 <div style="text-align:center"><span> Earthquakes(red) vs Injection Wells (blue) in Oklahoma: Map by Anna Stafford</span></div>
 <p align="center">
-  <img width="1000" height="700" src="images/Earthquakes_red_water_injection_blue.png">
+  <img width="900" height="500" src="images/Earthquakes_red_water_injection_blue.png">
 </p>
 
 
